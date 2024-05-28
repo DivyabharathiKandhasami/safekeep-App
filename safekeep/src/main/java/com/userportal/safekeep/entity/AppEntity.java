@@ -20,11 +20,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="table1")
+@Table(name = "table2")
 public class AppEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	@Column(name = "id")
 	private Long id;
 
@@ -113,10 +112,8 @@ public class AppEntity {
 		this.expired_time = expired_time;
 	}
 
-    
-    public void setOtpExpiryTime(LocalDateTime localDateTime) {
-        this.expired_time = localDateTime;
-    }
-	
+	public void setOtpExpiryTime(LocalDateTime localDateTime) {
+		this.expired_time = localDateTime;
+	}
 
 }

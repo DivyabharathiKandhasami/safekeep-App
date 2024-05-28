@@ -22,6 +22,8 @@ public class AppService {
 	public void SendOtp(String emailId, String username) {
 		// Generate a random OTP
 		String otp = generateOtp();
+		String subject ="subject";
+		String body = "body";
 
 		// Save the OTP to the user's account
 		AppEntity appEntity = appRepo.findByUsername(username);
@@ -32,7 +34,7 @@ public class AppService {
 		}
 
 		// Send the OTP to the user's email
-		emailService.sendOtpEmail(emailId, otp);
+		emailService.sendOtpEmail(emailId,   otp, subject, body);
 	}
 
 	private String generateOtp() {
