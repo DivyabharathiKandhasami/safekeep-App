@@ -22,7 +22,7 @@ public class RedisConfiguration {
 		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
 		return jedisConnectionFactory;
 	}
-
+	
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() {
 

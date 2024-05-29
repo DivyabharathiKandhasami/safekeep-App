@@ -1,6 +1,7 @@
 package com.userportal.safekeep.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class AppService {
 	public void SendOtp(String emailId, String username) {
 		// Generate a random OTP
 		String otp = generateOtp();
-		String subject ="subject";
+		System.out.println("This is otp is" + otp);
+		String subject = "subject";
 		String body = "body";
 
 		// Save the OTP to the user's account
@@ -34,13 +36,15 @@ public class AppService {
 		}
 
 		// Send the OTP to the user's email
-		emailService.sendOtpEmail(emailId,   otp, subject, body);
+		emailService.sendOtpEmail(emailId, otp, subject, body);
 	}
 
 	private String generateOtp() {
 		// Generate a random 6-digit OTP
 
-		return String.valueOf(new Random().nextInt(900000) + 100000);
+		String.valueOf(new Random().nextInt(900000) + 100000);
+		System.out.print("otp is sent");
+		return "otp is returned";
 	}
 
 	private LocalDateTime getExpiryTime() {
@@ -48,6 +52,11 @@ public class AppService {
 		// Set the OTP to expire after 8 minutes
 
 		return LocalDateTime.now().plusMinutes(8);
+	}
+
+	// get all otp
+	public List<AppEntity> getAllOtp() {
+		return appRepo.findAll();
 	}
 
 }

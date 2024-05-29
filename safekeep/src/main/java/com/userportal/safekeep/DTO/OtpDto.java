@@ -1,8 +1,10 @@
 package com.userportal.safekeep.DTO;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 @Data
+
 public class OtpDto {
 	
 	// sign up Dto 

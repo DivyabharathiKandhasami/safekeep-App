@@ -1,4 +1,4 @@
-package com.userportal.safekeep;
+     package com.userportal.safekeep;
 
 import java.util.Random;
 
@@ -35,6 +35,7 @@ public class SafekeepApplication {
 		"hi thanks for registering in safeKeep", "Please enater the otp");
 		
 		   System.out.println( "otp send Successfully (❁´◡`❁)");
+		   
 		   
 	   }
    
