@@ -55,7 +55,7 @@ public class AppService {
 	}
 
 	// get all otp
-	public List<AppEntity> getAllOtp() {
+	public List <AppEntity>  getAllOtp() {
 		return appRepo.findAll();
 	}
 

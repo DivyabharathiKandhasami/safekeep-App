@@ -11,9 +11,9 @@ import com.userportal.safekeep.DTO.OtpDto;
 public class EmailService {
 
 	@Autowired
-	JavaMailSender javamailsender;
+       JavaMailSender javamailsender;
 
-	public void sendOtpEmail(String emailId, String otp,String subject,String body) {
+/*	public JavaMailSender sendOtpEmail(String emailId, String otp,String subject,String body) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 
 		/*mailMessage.setFrom("divyaKandhasami@gmail.com");
@@ -24,7 +24,7 @@ public class EmailService {
 		mailMessage.setText("To complete your registration, please enter the following OTP code:\n" + "\n" + otp + "\n"
 				+ "This OTP code is valid for 8 minutes only. If you did not request this OTP code, please ignore this email.\n"
 				+ "\n" + "Best regards,\n" + "The Safe keep Team " + otp);
-*/
+
 		mailMessage.setFrom("divyakandhasami@gmail.com");
 		mailMessage.setTo(otp);
 
@@ -33,6 +33,30 @@ public class EmailService {
 
 		mailMessage.setSubject(subject);
 		
-	}
+		return javamailsender;
+		
+	}*/
 
+	public void sendOtpEmail(String emailId, String otp, String subject, String body) {
+	    SimpleMailMessage mailMessage = new SimpleMailMessage();
+	    mailMessage.setFrom("divyabharathikandhasami@gmail.com");
+	    mailMessage.setTo(emailId);
+	    mailMessage.setText(" Thank you for registering our safekeep App🤫"
+	    		+ "Your data are safe and secure 🔐, your safety is our priority😊"
+	    		+ "Please Enter the following otp"
+	    		+ "Let keep your Identity 🪪"
+	    		
+	    		+ "Your OTP is: " + otp);
+	    mailMessage.setSubject(subject);
+	    javamailsender.send(mailMessage);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

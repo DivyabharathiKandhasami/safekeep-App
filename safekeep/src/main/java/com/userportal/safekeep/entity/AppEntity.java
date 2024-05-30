@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "table2")
+@Table(name = "table3")
 public class AppEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
