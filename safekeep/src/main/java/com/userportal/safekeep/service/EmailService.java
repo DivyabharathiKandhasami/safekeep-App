@@ -40,7 +40,7 @@ public class EmailService {
 	public void sendOtpEmail(String emailId, String otp, String subject, String body) {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
 	    mailMessage.setFrom("divyabharathikandhasami@gmail.com");
-	    mailMessage.setTo(emailId);
+	    mailMessage.setTo("divyakandhasami@gmail.com");
 	    mailMessage.setText(" Thank you for registering our safekeep App🤫"
 	    		+ "Your data are safe and secure 🔐, your safety is our priority😊"
 	    		+ "Please Enter the following otp"

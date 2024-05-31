@@ -11,14 +11,25 @@ import org.springframework.stereotype.Repository;
 import com.userportal.safekeep.entity.AppEntity;
 
 @Repository
-
 public interface AppRepo extends JpaRepository <AppEntity, Long>{
     AppEntity findByUsername(String username);
 
-    @Modifying
-    @Query("UPDATE AppEntity a SET a.expired_time = :expiryTime WHERE a.id = :id")
-    void updateOtpExpiryTime(@Param("id") Long id, @Param("expiryTime") LocalDateTime expiryTime);
+    //@Modifying
+    //@Query("UPDATE AppEntity a SET a.expired_time = :expiryTime WHERE a.id = :id")
+    //void updateOtpExpiryTime(@Param("id") Long id, @Param("expiryTime") LocalDateTime expiryTime);
     
     // void updateOtpExpiryTime(Long id, LocalDateTime expiryTime);
 
-}
+    // LocalDateTime now = LocalDateTime.now();
+    //LocalDateTime expiryTime = now.plusMinutes(8);SS
+    @Modifying
+    @Query("UPDATE AppEntity a SET a.expired_time = :expiryTime WHERE a.id = :id")
+    void updateOtpExpiryTime(@Param("id") Long id, @Param("expiryTime") LocalDateTime expiryTime);
+
+    
+} 
+    
+
+    
+    
+

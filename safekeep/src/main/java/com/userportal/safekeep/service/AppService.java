@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.userportal.safekeep.DTO.OtpDto;
@@ -19,6 +20,10 @@ public class AppService {
 
 	@Autowired
 	EmailService emailService;
+
+    @Autowired
+    private JpaRepository appEntityRepository;
+    
 
 	public void SendOtp(String emailId, String username) {
 		// Generate a random OTP
@@ -58,5 +63,11 @@ public class AppService {
 	public List <AppEntity>  getAllOtp() {
 		return appRepo.findAll();
 	}
+	
+	public void updateOtpExpiryTime(Long id) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expiryTime = now.plusMinutes(8);
+        ((AppRepo) appEntityRepository).updateOtpExpiryTime(id, expiryTime);
+    }
 
 }

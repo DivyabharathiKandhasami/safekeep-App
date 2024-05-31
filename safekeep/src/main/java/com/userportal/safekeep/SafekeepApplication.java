@@ -32,7 +32,7 @@ public class SafekeepApplication {
 	public Object sendMail() {
 		String otp = generateOtp();
 		emailservice.sendOtpEmail("divyakandhasami@gmail.com", otp, "OTP REGISTER",
-			"Please enter the otp");
+		 "Please enter the otp");
 
 		System.out.println("otp send Successfully (❁´◡`❁)");
 		return javamailsender;
