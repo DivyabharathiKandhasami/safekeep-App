@@ -31,8 +31,7 @@ public class SafekeepApplication {
 	@EventListener(ApplicationReadyEvent.class)
 	public Object sendMail() {
 		String otp = generateOtp();
-		emailservice.sendOtpEmail("divyakandhasami@gmail.com", otp, "OTP REGISTER",
-		 "Please enter the otp");
+		emailservice.sendOtpEmail("divyakandhasami@gmail.com", otp, "OTP REGISTER", "Please enter the otp");
 
 		System.out.println("otp send Successfully (❁´◡`❁)");
 		return javamailsender;

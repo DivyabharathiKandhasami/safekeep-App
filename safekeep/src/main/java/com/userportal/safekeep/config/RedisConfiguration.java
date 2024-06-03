@@ -8,6 +8,7 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
 @EnableCaching
 @Configuration
 public class RedisConfiguration {
@@ -22,10 +23,9 @@ public class RedisConfiguration {
 		JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
 		return jedisConnectionFactory;
 	}
-	
+
 	@Bean
 	public RedisTemplate<String, Object> redisTemplate() {
-
 		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(jedisConnectionFactory());
 		redisTemplate.setDefaultSerializer(new StringRedisSerializer());
@@ -37,5 +37,3 @@ public class RedisConfiguration {
 		return redisTemplate;
 	}
 }
-
-

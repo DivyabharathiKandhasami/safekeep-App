@@ -21,9 +21,8 @@ public class AppService {
 	@Autowired
 	EmailService emailService;
 
-    @Autowired
-    private JpaRepository appEntityRepository;
-    
+	@Autowired
+	private JpaRepository appEntityRepository;
 
 	public void SendOtp(String emailId, String username) {
 		// Generate a random OTP
@@ -31,6 +30,12 @@ public class AppService {
 		System.out.println("This is otp is" + otp);
 		String subject = "subject";
 		String body = "body";
+
+		// Validate if the user already has an unexpired OTP
+		AppEntity existingAppEntity = appRepo.findByUsername(username);
+		if (existingAppEntity != null && !isOtpExpired(existingAppEntity.getExpired_time())) {
+			throw new RuntimeException("An unexpired OTP already exists for this user");
+		}
 
 		// Save the OTP to the user's account
 		AppEntity appEntity = appRepo.findByUsername(username);
@@ -46,7 +51,6 @@ public class AppService {
 
 	private String generateOtp() {
 		// Generate a random 6-digit OTP
-
 		String.valueOf(new Random().nextInt(900000) + 100000);
 		System.out.print("otp is sent");
 		return "otp is returned";
@@ -59,15 +63,37 @@ public class AppService {
 		return LocalDateTime.now().plusMinutes(8);
 	}
 
+	// Is otp Expired?
+	private boolean isOtpExpired(LocalDateTime expiryTime) {
+		return expiryTime.isBefore(LocalDateTime.now());
+	}
+
 	// get all otp
-	public List <AppEntity>  getAllOtp() {
+	public List<AppEntity> getAllOtp() {
 		return appRepo.findAll();
 	}
-	
+
+	// To set the expiry time
 	public void updateOtpExpiryTime(Long id) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expiryTime = now.plusMinutes(8);
-        ((AppRepo) appEntityRepository).updateOtpExpiryTime(id, expiryTime);
-    }
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime expiryTime = now.plusMinutes(8);
+		((AppRepo) appEntityRepository).updateOtpExpiryTime(id, expiryTime);
+	}
+
+	// validate the otp
+	public String validateOtp(String emailId, String otp) {
+		AppEntity appEntity = appRepo.findByUsername(emailId);
+		if (appEntity == null) {
+			return "The user exists in the database.";
+		}
+		if (!appEntity.getOtp().equals(otp)) {
+			return "The OTP matches the one stored in the database ";
+		}
+		if (isOtpExpired(appEntity.getExpired_time())) {
+			return "it returns expired time";
+		}
+
+		return "The OTP has not expired.";
+	}
 
 }

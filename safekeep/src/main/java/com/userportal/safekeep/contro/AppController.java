@@ -25,7 +25,7 @@ public class AppController {
 	public ResponseEntity<String> SendOtp(@RequestBody OtpDto otpDto) {
 		String emailId = otpDto.getEmailId();
 		String username = otpDto.getUsername();
-		
+
 		appService.SendOtp(emailId, username);
 
 		return ResponseEntity.ok("OTP sent successfully to user email");
@@ -36,7 +36,4 @@ public class AppController {
 		return appService.getAllOtp();
 	}
 
-	
-	
-	
 }
