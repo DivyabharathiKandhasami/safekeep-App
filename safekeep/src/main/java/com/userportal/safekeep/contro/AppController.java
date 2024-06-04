@@ -13,13 +13,40 @@ import org.springframework.web.bind.annotation.RestController;
 import com.userportal.safekeep.DTO.OtpDto;
 import com.userportal.safekeep.entity.AppEntity;
 import com.userportal.safekeep.service.AppService;
+import com.userportal.safekeep.service.MyService;
+
+import jakarta.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("api/safekeep")
 public class AppController {
 
+	/*
+	 * @Autowired AppService appService;
+	 * 
+	 * @Autowired private MyService myService;
+	 * 
+	 * private String otp = appService.generateOtp();
+	 * 
+	 * public void testSetOtp() { myService.set("otp" + otp); }
+	 */
+
 	@Autowired
 	AppService appService;
+
+	@Autowired
+	private MyService myService;
+
+	private String otp;
+
+	@PostConstruct
+	public void initializeOtp() {
+		otp = appService.generateOtp();
+	}
+
+	public void testSetOtp() {
+		myService.set("otp" + otp);
+	}
 
 	@PostMapping("/send-otp")
 	public ResponseEntity<String> SendOtp(@RequestBody OtpDto otpDto) {
