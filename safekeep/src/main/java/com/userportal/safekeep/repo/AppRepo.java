@@ -25,6 +25,7 @@ public interface AppRepo extends JpaRepository<AppEntity, Long> {
 	// LocalDateTime now = LocalDateTime.now();
 	// LocalDateTime expiryTime = now.plusMinutes(8);
 
+	
 	@Modifying
 	@Query("UPDATE AppEntity a SET a.expired_time = :expiryTime WHERE a.id = :id")
 	void updateOtpExpiryTime(@Param("id") Long id, @Param("expiryTime") LocalDateTime expiryTime);

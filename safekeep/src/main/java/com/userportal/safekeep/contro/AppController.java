@@ -40,14 +40,16 @@ public class AppController {
 	private String otp;
 
 	@PostConstruct
-	public void initializeOtp() {
+	public void initializeOtp()
+	{
 		otp = appService.generateOtp();
 	}
 
-	public void testSetOtp() {
-		myService.set("otp" + otp);
+	public void testSetOtp()
+	{
+		myService.set("otp" + otp, otp);
 	}
-
+ 
 	@PostMapping("/send-otp")
 	public ResponseEntity<String> SendOtp(@RequestBody OtpDto otpDto) {
 		String emailId = otpDto.getEmailId();
@@ -59,7 +61,8 @@ public class AppController {
 	}
 
 	@GetMapping("/getall/users")
-	public List<AppEntity> getAllOtp() {
+	public List<AppEntity> getAllOtp()
+	{
 		return appService.getAllOtp();
 	}
 

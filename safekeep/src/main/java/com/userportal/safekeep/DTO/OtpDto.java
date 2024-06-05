@@ -12,15 +12,18 @@ public class OtpDto {
 	private String username;
 	private String emailId;
 
-	public String getUsername() {
+	public String getUsername()
+	{
 		return username;
 	}
 
-	public void setUsername(String username) {
+	public void setUsername(String username)
+	{
 		this.username = username;
 	}
 
-	public String getEmailId() {
+	public String getEmailId() 
+	{
 		return emailId;
 	}
 

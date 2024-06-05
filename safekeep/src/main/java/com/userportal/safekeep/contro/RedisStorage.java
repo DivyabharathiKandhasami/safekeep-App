@@ -5,23 +5,29 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Jedis;
 
 import com.userportal.safekeep.service.MyService;
 
+/*public class RedisStorage {
+@Autowired
+MyService myservice;
+private Jedis jedis;
+public RedisStorage() {
+	jedis = new Jedis();
+}
+public void storeData(String key, String value) {
+	myservice.set(key);
+}
+public void getData(String key) {
+	myservice.get(key);
+}
+}*/
 public class RedisStorage {
 	@Autowired
-	MyService myservice;
-
-	private Jedis jedis;
-
-	public RedisStorage() {
-		jedis = new Jedis();
-	}
+	MyService myService;
 
 	public void storeData(String key, String value) {
-		myservice.set(key);
+		myService.set(key, value);
 	}
 
 	public void getData(String key) {
-
-		myservice.get(key);
+		myService.get(key);
 	}
-
 }
