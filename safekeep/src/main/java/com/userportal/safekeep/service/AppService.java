@@ -58,7 +58,7 @@ public class AppService {
 
 	private LocalDateTime getExpiryTime() {
 
-	 	// Set the OTP to expire after 8 minutes
+		// Set the OTP to expire after 8 minutes
 
 		return LocalDateTime.now().plusMinutes(8);
 	}
@@ -83,10 +83,10 @@ public class AppService {
 	// validate the otp
 	public String validateOtp(String emailId, String otp) {
 		AppEntity appEntity = appRepo.findByUsername(emailId);
-		if(appEntity == null) {
-			return " The user exists in the database." ;
+		if (appEntity == null) {
+			return " The user exists in the database.";
 		}
-		if(!appEntity.getOtp().equals(otp)) {
+		if (!appEntity.getOtp().equals(otp)) {
 			return " The OTP matches the one stored in the database ";
 		}
 		if (isOtpExpired(appEntity.getExpired_time())) {

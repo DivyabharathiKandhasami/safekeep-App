@@ -2,6 +2,7 @@ package com.userportal.safekeep.contro;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Jedis;
+import org.springframework.stereotype.Service;
 
 import com.userportal.safekeep.service.MyService;
 
@@ -19,15 +20,18 @@ public void getData(String key) {
 	myservice.get(key);
 }
 }*/
+
+@Service
 public class RedisStorage {
 	@Autowired
-	MyService myService;
+	private MyService myService;
 
-	public void storeData(String key, String value) {
-		myService.set(key, value);
+	public void set(String key, String value) {
+		myService.setData(key, value);
 	}
 
-	public void getData(String key) {
-		myService.get(key);
+	public String get(String key) {
+		return myService.getData(key);
 	}
+
 }

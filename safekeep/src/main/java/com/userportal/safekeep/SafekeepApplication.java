@@ -19,20 +19,17 @@ public class SafekeepApplication {
 	@Autowired
 	JavaMailSender javamailsender;
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		SpringApplication.run(SafekeepApplication.class, args);
 	}
 
-	private String generateOtp() 
-	{
+	private String generateOtp() {
 
 		return String.valueOf(new Random().nextInt(900000) + 100000);
 	}
 
 	@EventListener(ApplicationReadyEvent.class)
-	public Object sendMail()
-	{
+	public Object sendMail() {
 		String otp = generateOtp();
 		emailservice.sendOtpEmail("divyakandhasami@gmail.com", otp, "OTP REGISTER", "Please enter the otp");
 
@@ -40,5 +37,4 @@ public class SafekeepApplication {
 		return javamailsender;
 
 	}
-
 }
